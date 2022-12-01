@@ -1,0 +1,50 @@
+.jspsych-display-element {
+    background-color: black;
+    color: white;
+}
+
+
+
+.agreenment {
+    margin: auto;
+    width: 1000px;
+}
+
+.causion {
+    margin: auto;
+    width: 600px;
+}
+
+.causion p {
+    text-align: left;
+    font-size: 20px;
+    margin: auto;
+}
+
+.agreenment p {
+    text-align: left;
+    font-size: 20px;
+    margin: auto;
+}
+
+.title {
+    font-weight: bold;
+}
+
+.contents {
+    text-indent: 1rem;
+}
+
+.address {
+    margin: auto;
+    margin-top: 20px;
+    width: 750px;
+    font-size: 18px;
+    border: 4px solid;
+    border-color: black;
+    border-radius: 8px;
+    text-align: left;
+    padding: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
