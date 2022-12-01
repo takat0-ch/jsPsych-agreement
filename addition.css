@@ -48,3 +48,8 @@
     padding-left: 15px;
     padding-right: 15px;
 }
+
+input[type=checkbox] {
+    transform: scale(2);
+    margin: 20px;
+  }
