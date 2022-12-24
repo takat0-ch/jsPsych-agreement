@@ -7,26 +7,13 @@
     <script src="https://unpkg.com/jspsych@7.2.1"></script>
     <script src="https://unpkg.com/@jspsych/plugin-fullscreen@1.1.0"></script>
     <script src="https://unpkg.com/@jspsych/plugin-survey-multi-select@1.1.0"></script>
-    <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.1"></script>
-
-
     <link href="https://unpkg.com/jspsych@7.2.1/css/jspsych.css" rel="stylesheet" type="text/css" />
-    <link href="addition.css" rel="stylesheet" />
+    <link href="addition.css" rel="stylesheet" type="text/css" />
 </head>
-<style>
-
-</style>
-
 <body>
 </body>
 
 <script>
-
-    // call the saveData function after the experiment is over
-    initJsPsych({
-        on_finish: function () { saveData(jsPsych.data.get().csv()); }
-    });
-
 
     const jsPsych = initJsPsych({
         on_finish: function () {
@@ -44,37 +31,13 @@
 
     const end_fullscreen = {
         type: jsPsychFullscreen,
-        message: '<p>フルスクリーンモードを終了します。</p>',
-        button_label: '次へ',
         fullscreen_mode: false
     };
 
 
 
 
-    const welcome = {
-        type: jsPsychHtmlButtonResponse,
-        stimulus: '<p style = "text-align: center; font-size: 25px; margin-bottom: auto; margin-top: 5px;"><b>小山貴士の実験ページ</b></p>' +
-            '<br><p style = "text-align: center;">実験参加のご協力ありがとうございます。</p>' +
-            '<p style = "text-align: center;">このページは実験責任者 小山貴士の実験ページです。</p>' +
-            '<div class = "causion">' +
-            '<p class = "title">注意事項</p>' +
-            '<p class = "title"> 1. 実験装置</p>' +
-            '<p class = "contents">実験はご自身のパーソナルコンピュータを用いてご参加いただけます。スマートフォンやタブレット端末では実施できません</p>' +
-            '<br><p class = "title"> 2. webブラウザ</p>' +
-            '<p class = "contents">実験で使用するwebブラウザは<b>Google Chrome</b>をご利用ください。SafariやFirefox、Microsoft Edgeなどでは正常に動作いたしません。</p>' +
-            '<br><p class = "title"> 3. ディスプレイとの距離</p>' +
-            '<p class = "contenst">実験中はディスプレイから-- cm 程度離れて行ってください。</p>' +
-            '<br><p class = "title"> 4. 実験環境</p>' +
-            '<p class = "contents">実験を行う際は、自宅など通信環境の良い、静かな場所で行ってください。</p>' +
-            '<br><p style = "margin: auto;">ご準備が整いましたら、下記の次へのボタンをクリックしてください。</p>' +
-            '</div>',
-        choices: ['次へ']
-    };
-
-
-
-    const agreement = {
+    const agreement1 = {
         type: jsPsychSurveyMultiSelect,
         questions: [
             {
@@ -83,29 +46,65 @@
                 required: true
             }
         ],
-        preamble:  '<div class = "agreenment">' +
-            '<p style = "text-align: center; font-size: 25px; margin-bottom: auto; margin-top: 5px;"><b>-------の検討  研究説明書</b></p>' +
-            '<br><p class ="title"><input type="checkbox" required>1. 実験の目的および内容</p>' +
+        preamble: '<header class = "header">-------の検討  研究説明書</header>' +
+            '<div class = "agreenment">' +
+            '<p class ="title">1. 実験の目的および内容</p>' +
             '<p class = "contents">この実験は、-------について調べることを目的としています。この実験はあなた個人の性格や能力などを調査することを目的としたものではありません。</p>' +
-            '<br><p class = "title">2. 実験の方法</p>' +
-            '<p class = "contents">本研究はwebブラウザ上で行う実験で、画面上に提示される--------課題を行っていただきます。予-----------という課題です。所要時間は00分程度です。</p>' +
-            '<br><p class ="title">3. 実験に伴う危険性及び不利益について</p>' +
+            '<p class = "title">2. 実験の方法</p>' +
+            '<p class = "contents">本研究はwebブラウザ上で行う実験で、画面上に提示される--------課題を行っていただきます。-----------という課題です。所要時間は00分程度です。</p>' +
+            '<p class ="title">3. 実験に伴う危険性及び不利益について</p>' +
             '<p class = "contents">実験を行い、モニターを見続けることで目の疲れや肩こりなど一時的に疲労やストレスを感じる可能性がありますが、身体や精神に恒久的な影響が生じる心配は一切ありません。また、もし万が一負担や不快感などを感ずることがあったら、あなたの意志で自由に休憩を取ることが可能であり、実験をいつでも中止することができます。休憩及び実験の中止はいつ、いかなる理由でも可能です。また、休憩、実験中止、不参加に伴う不利益は一切生じません。</p>' +
-            '<br><p class ="title">4. 研究結果の使われ方</p>' +
+            '<p class ="title">4. 研究結果の使われ方</p>' +
             '<p class = "contents">実験の結果は将来、学術論文や学会発表などを通じ公表される可能性があります。ただし、その際も参加者の何十人の代表値（平均値など）のみが公表され、どのような形であれ、研究協力者の個人のデータが単独で公表される可能性はありません。本研究では、再現性問題への配慮、研究の透明化の観点から取得した研究データをオープンアクセスとします（論文等で公開します）。オープンアクセスとしたデータについては、各研究協力者のデータにランダムにIDを付与して公開しますのであなたの個人情報と関連づけられることは一切ありません。</p>' +
-            '<br><p class ="title">5. 結果のフィードバック</p>' +
+            '<p class ="title">5. 結果のフィードバック</p>' +
             '<p class = "contents">結果のフィードバックは本研究が終了した後、20xx年 x月からx年間--------において行います。また，結果には研究協力者個人を特定できるようないかなる個人情報も掲載いたしません。</p>' +
-            '<br><p class ="title">6. プライバシーの保護</p>' +
+            '<p class ="title">6. プライバシーの保護</p>' +
             '<p class = "contents">実験ではキー押し反応と反応にかかる時間が記録されますが、データは全て匿名で扱われ、研究者以外があなたのデータを直接見ることはできません。さらに、データから個人が特定できる情報は一切記載しません。研究データ収集後は当該データを記録メディアでのみ保管します。研究期間終了後においては、研究者の管理の下にある鍵の掛かる保管庫で10年間保管され、その後、物理的に破壊するなどの措置を用いて復元不可能な状態にします。なお、オープンアクセスとした公開データについては、10年目以降も公開を続けるものとします。</p>' +
-            '<br><p class ="title">7. 研究協力の自由及び同意の撤回について</p>' +
+            '<p class ="title">7. 研究協力の自由及び同意の撤回について</p>' +
             '<p class = "contents">研究への参加はあなたの自由意志によって決められるものであり，強制ではありません。本研究に参加しないことによる不利益や同意の撤回に伴う不利益はありません。同意の撤回は実験中、実験を中断することで行うことができます。実験終了後は同意を撤回できないことをご了承ください。</p>' +
-            '<table class = "address"><tr><th>連絡先</th><th>専修大学 -------</th></tr>' +
+            '<table class = "contact"><tr><th>連絡先</th><th>専修大学 -------</th></tr>' +
             '<tr><th>実験者</th><th>専修大学大学院文学研究科心理学専攻 小山貴士</th></tr>' +
             '<tr><th>指導教員</th><th>------- 教授</th></tr>' +
             '<tr><th>E-mail</th><th>---@gmail.com</th></tr>' +
             '<tr><th>電話番号</th><th>000-000-0000 (-------)</th></tr>' +
             '<tr><th>住所</th><th>〒000-0000 神奈川県川崎市多摩区----- 0-0-0 (----研究室)</th>' +
-            '<tr><th>ホームページ</th><th>https://github.com/takat0-ch</th></tr></table>' +
+            '<tr><th>ホームページ</th><th><a href="https://researchmap.jp/takato_oyama">https://researchmap.jp/takato_oyama</a></th></tr></table>' +
+            '</div>',
+        button_label: ['次へ']
+    };
+
+    const agreement2 = {
+        type: jsPsychSurveyMultiSelect,
+        questions: [
+            {
+                prompt: "実験のご協力に同意いただける方は下記のチェックボックスにチェックを入れ、次へをクリックしてください。<br>同意いただけない方はそのままウィンドウを閉じてください。",
+                options: ['<b>以上について説明を読み、理解したので本研究に研究協力者として参加することに同意する。</b>'],
+                required: true
+            }
+        ],
+        preamble: '<p class = "header"><b>-------の検討  研究説明書</b></p>' +
+            '<div class = "agreenment">' +
+            '<p class ="title"><input type="checkbox" required>1. 実験の目的および内容</p>' +
+            '<p class = "contents">この実験は、-------について調べることを目的としています。この実験はあなた個人の性格や能力などを調査することを目的としたものではありません。</p>' +
+            '<p class = "title"><input type="checkbox" required>2. 実験の方法</p>' +
+            '<p class = "contents">本研究はwebブラウザ上で行う実験で、画面上に提示される--------課題を行っていただきます。予-----------という課題です。所要時間は00分程度です。</p>' +
+            '<p class ="title"><input type="checkbox" required>3. 実験に伴う危険性及び不利益について</p>' +
+            '<p class = "contents">実験を行い、モニターを見続けることで目の疲れや肩こりなど一時的に疲労やストレスを感じる可能性がありますが、身体や精神に恒久的な影響が生じる心配は一切ありません。また、もし万が一負担や不快感などを感ずることがあったら、あなたの意志で自由に休憩を取ることが可能であり、実験をいつでも中止することができます。休憩及び実験の中止はいつ、いかなる理由でも可能です。また、休憩、実験中止、不参加に伴う不利益は一切生じません。</p>' +
+            '<p class ="title"><input type="checkbox" required>4. 研究結果の使われ方</p>' +
+            '<p class = "contents">実験の結果は将来、学術論文や学会発表などを通じ公表される可能性があります。ただし、その際も参加者の何十人の代表値（平均値など）のみが公表され、どのような形であれ、研究協力者の個人のデータが単独で公表される可能性はありません。本研究では、再現性問題への配慮、研究の透明化の観点から取得した研究データをオープンアクセスとします（論文等で公開します）。オープンアクセスとしたデータについては、各研究協力者のデータにランダムにIDを付与して公開しますのであなたの個人情報と関連づけられることは一切ありません。</p>' +
+            '<p class ="title"><input type="checkbox" required>5. 結果のフィードバック</p>' +
+            '<p class = "contents">結果のフィードバックは本研究が終了した後、20xx年 x月からx年間--------において行います。また，結果には研究協力者個人を特定できるようないかなる個人情報も掲載いたしません。</p>' +
+            '<p class ="title"><input type="checkbox" required>6. プライバシーの保護</p>' +
+            '<p class = "contents">実験ではキー押し反応と反応にかかる時間が記録されますが、データは全て匿名で扱われ、研究者以外があなたのデータを直接見ることはできません。さらに、データから個人が特定できる情報は一切記載しません。研究データ収集後は当該データを記録メディアでのみ保管します。研究期間終了後においては、研究者の管理の下にある鍵の掛かる保管庫で10年間保管され、その後、物理的に破壊するなどの措置を用いて復元不可能な状態にします。なお、オープンアクセスとした公開データについては、10年目以降も公開を続けるものとします。</p>' +
+            '<p class ="title"><input type="checkbox" required>7. 研究協力の自由及び同意の撤回について</p>' +
+            '<p class = "contents">研究への参加はあなたの自由意志によって決められるものであり，強制ではありません。本研究に参加しないことによる不利益や同意の撤回に伴う不利益はありません。同意の撤回は実験中、実験を中断することで行うことができます。実験終了後は同意を撤回できないことをご了承ください。</p>' +
+            '<table class = "contact"><tr><th>連絡先</th><th>専修大学 -------</th></tr>' +
+            '<tr><th>実験者</th><th>専修大学大学院文学研究科心理学専攻 小山貴士</th></tr>' +
+            '<tr><th>指導教員</th><th>------- 教授</th></tr>' +
+            '<tr><th>E-mail</th><th>---@gmail.com</th></tr>' +
+            '<tr><th>電話番号</th><th>000-000-0000 (-------)</th></tr>' +
+            '<tr><th>住所</th><th>〒000-0000 神奈川県川崎市多摩区----- 0-0-0 (----研究室)</th>' +
+            '<tr><th>ホームページ</th><th><a href="https://researchmap.jp/takato_oyama">https://researchmap.jp/takato_oyama</a></th></tr></table>' +
             '</div>',
         button_label: ['次へ']
     };
@@ -119,9 +118,9 @@
 
 
     timeline.push(fullscreen);
-    timeline.push(welcome);
-    timeline.push(agreement);
-       timeline.push(end_fullscreen);
+    timeline.push(agreement1);
+    timeline.push(agreement2);
+    timeline.push(end_fullscreen);
 
     jsPsych.run(timeline);
 
